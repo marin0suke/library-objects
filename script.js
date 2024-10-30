@@ -9,21 +9,24 @@ function Book(title, author, pages, haveRead) { // Book obj with functionality f
         }
 };
 
-// Book.prototype.toggleReadStatus = function() {
-//     this.haveRead = !this.haveRead;
-// };
-
 const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 const haveReadInput = document.querySelector("#have-read");
 const addBookButton = document.querySelector(".add-book");
 
-addBookButton.addEventListener("click", () => {
+addBookButton.addEventListener("click", (event) => {
+    event.preventDefault(); // this stops form validation happening but also make sure only submitted when we want - so we need to hva validation here in script. 
+
     const title = titleInput.value;
     const author = authorInput.value;
     const pages = parseInt(pagesInput.value);
     const haveRead = haveReadInput.checked;
+
+    if (!title) {
+        alert("Must have title to submit into library.");
+        return;
+    };
 
     addBookToLibrary(title, author, pages, haveRead);
 
@@ -35,10 +38,9 @@ addBookButton.addEventListener("click", () => {
 
 let book1 = new Book("The Ninth House", "Leigh Bardugo", 578, true); // dummy books for display.
 let book2 = new Book("Hell Bent", "Leigh Bardugo", 655, false);
-let book3 = new Book("A Court of Thorns and Roses", "Sarah J Maas", 390, true);
-let book4 = new Book("Snow White", "Walt Disney", 267, false);
+let book3 = new Book("Snow White", "Walt Disney", 267, false);
 
-const myLibrary = [book1, book2, book3, book4]; // initialise array for books to be stored.
+const myLibrary = [book1, book2, book3]; // initialise array for books to be stored.
 
 
 function displayLibrary(array, index) { // guessing we need func instead of it running auto, so that any book card added is updated on submit instead of needing to refresh?

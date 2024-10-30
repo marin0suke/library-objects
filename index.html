@@ -10,14 +10,16 @@
     <div class="sidebar">
         <h1 class="header">Marin's Library</h1>
         <h2>Add a book</h2>
-        <input type="text" id="title" placeholder="Title" required>
-        <input type="text" id="author" placeholder="Author">
-        <input type="number" id="pages" placeholder="Pages">
-        <div class="check-have-read">
-            <label for="have-read">Have read</label>
-            <input type="checkbox" id="have-read">
-        </div>
-        <button class="add-book">Add Book</button>
+        <form>
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="author" placeholder="Author">
+            <input type="number" id="pages" placeholder="Pages">
+            <div class="check-have-read">
+                <label for="have-read">Have read</label>
+                <input type="checkbox" id="have-read">
+            </div>
+            <button type="submit" class="add-book">Add Book</button>
+        </form>
     </div>
     <div class="display-books"></div>
     <script src="script.js"></script>

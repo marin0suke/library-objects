@@ -17,13 +17,13 @@ body {
     background-color: #e2e8f0;
     align-items: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
    
 }
 
 .display-books {
     background-color: #94a3b8;
     flex: 1;
-    z-index: -1;
     display: flex;
     flex-wrap: wrap; 
     gap: 30px;
@@ -37,7 +37,7 @@ body {
     padding: 10px;
     width: 150px;
     height: 200px;
-    position: relative; /*add for elements inside positioning*/
+    /* position: relative; add for elements inside positioning */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,8 +45,9 @@ body {
     color: white;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
+
 
 
 .check-have-read {
@@ -100,3 +101,4 @@ input::placeholder {
     text-align: center; /* Center placeholder text */
     color: #888;        /* Optional: Customize placeholder color */
 }
+

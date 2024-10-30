@@ -31,24 +31,21 @@ addBookButton.addEventListener("click", () => {
 
 let book1 = new Book("The Ninth House", "Leigh Bardugo", 578, true); // dummy books for display.
 let book2 = new Book("Hell Bent", "Leigh Bardugo", 655, false);
-let book3 = new Book("A Course of Thorns and Roses", "Sarah J Maas", 390, true);
+let book3 = new Book("A Court of Thorns and Roses", "Sarah J Maas", 390, true);
 let book4 = new Book("Snow White", "Walt Disney", 267, false);
 
 const myLibrary = [book1, book2, book3, book4]; // initialise array for books to be stored.
 
-function addBookToLibrary(title, author, pages, haveRead) { // function that will be called on click of "confirm add" after the inputs have been collected from user.
-    const newBook = new Book(title, author, pages, haveRead); // create new book by declaring new book.
-    myLibrary.push(newBook); // add to the array.
-    displayLibrary(myLibrary);
-};
 
-function displayLibrary(array) { // guessing we need func instead of it running auto, so that any book card added is updated on submit instead of needing to refresh?
+function displayLibrary(array, index) { // guessing we need func instead of it running auto, so that any book card added is updated on submit instead of needing to refresh?
     const container = document.querySelector(".display-books"); // select the div that will be displaying.
     container.innerHTML = ""; // clears all elements (not just text) and safe to use here since we are removing and not adding from external sources.
 
     array.forEach(book => {
         const bookCard = document.createElement("div"); // must be a standard html tag.
         bookCard.classList.add("book-card"); // attach a class to created div element.
+
+        bookCard.dataset.index = index; 
 
         const title = document.createElement("h3");
         title.textContent = book.title;
@@ -63,13 +60,38 @@ function displayLibrary(array) { // guessing we need func instead of it running 
         bookCard.append(pages);
 
         const haveRead = document.createElement("button");
-        haveRead.textContent = book.haveRead ? "Read" : "Not Read";
+        haveRead.textContent = book.haveRead ? "Read" : "Unread";
         bookCard.append(haveRead);
+        console.log("haveREadbuttoncreated")
 
-        container.append(bookCard); // append completed bookcard to the container div. (display it).
+        haveRead.addEventListener("click", () => { // give button function on click.
+            // put toggle here
+            console.log(`New haveRead status: ${book.haveRead}`); // Log the new status
+
+            haveRead.textContent = book.haveRead ? "Read" : "Unread";
+        });
+
+        const removeCardButton = document.createElement("button");
+        removeCardButton.textContent = "Delete";
+        bookCard.append(removeCardButton);
+        console.log("remove button created");
+
+        removeCardButton.addEventListener("click", () => {
+            const bookIndex = parseInt(bookCard.dataset.index, 10); // radix specifies base 10 number.
+            myLibrary.splice(bookIndex, 1);
+            displayLibrary(myLibrary);
+        });
+
+        container.appendChild(bookCard); // append completed bookcard to the container div. (display it).
     }); 
     //display each book on the page. ?
    //loop through myLibrary and for each - create an element that will display a card (dom manipulation).
 }
 
-displayLibrary(myLibrary);
+function addBookToLibrary(title, author, pages, haveRead) { // function that will be called on click of "confirm add" after the inputs have been collected from user.
+    const newBook = new Book(title, author, pages, haveRead); // create new book by declaring new book.
+    myLibrary.push(newBook); // add to the array.
+    displayLibrary(myLibrary);
+};
+
+displayLibrary(myLibrary); 

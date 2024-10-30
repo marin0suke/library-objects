@@ -1,5 +1,3 @@
-const myLibrary = []; // initialise array for books to be stored.
-
 function Book(title, author, pages, haveRead) { // Book obj with functionality for whether have read or not.
 	this.title = title;
 	this.author = author;
@@ -11,21 +9,38 @@ function Book(title, author, pages, haveRead) { // Book obj with functionality f
         }
 };
 
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const haveReadInput = document.querySelector("#have-read");
+const addBookButton = document.querySelector(".add-book");
+
+addBookButton.addEventListener("click", () => {
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const haveRead = haveReadInput.value;
+    addBookToLibrary(title, author, pages, haveRead);
+})
+
 let book1 = new Book("The Ninth House", "Leigh Bardugo", 578, true); // dummy books for display.
 let book2 = new Book("Hell Bent", "Leigh Bardugo", 655, false);
 let book3 = new Book("A Course of Thorns and Roses", "Sarah J Maas", 390, true);
 let book4 = new Book("Snow White", "Walt Disney", 267, false);
 
+const myLibrary = [book1, book2, book3, book4]; // initialise array for books to be stored.
+
 function addBookToLibrary(title, author, pages, haveRead) { // function that will be called on click of "confirm add" after the inputs have been collected from user.
     const newBook = new Book(title, author, pages, haveRead); // create new book by declaring new book.
     myLibrary.push(newBook); // add to the array.
+    displayLibrary(myLibrary);
 };
 
-function displayLibrary(myLibrary) { // guessing we need func instead of it running auto, so that any book card added is updated on submit instead of needing to refresh?
+function displayLibrary(array) { // guessing we need func instead of it running auto, so that any book card added is updated on submit instead of needing to refresh?
     const container = document.querySelector(".display-books"); // select the div that will be displaying.
     container.innerHTML = ""; // clears all elements (not just text) and safe to use here since we are removing and not adding from external sources.
 
-    myLibrary.forEach(book => {
+    array.forEach(book => {
         const bookCard = document.createElement("div"); // must be a standard html tag.
         bookCard.classList.add("book-card"); // attach a class to created div element.
 
@@ -46,9 +61,9 @@ function displayLibrary(myLibrary) { // guessing we need func instead of it runn
         bookCard.append(haveRead);
 
         container.append(bookCard); // append completed bookcard to the container div. (display it).
-    });
-
-    
+    }); 
     //display each book on the page. ?
-    //loop through myLibrary and for each - create an element that will display a card (dom manipulation).
+   //loop through myLibrary and for each - create an element that will display a card (dom manipulation).
 }
+
+displayLibrary(myLibrary);

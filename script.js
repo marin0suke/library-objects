@@ -18,9 +18,15 @@ const addBookButton = document.querySelector(".add-book");
 addBookButton.addEventListener("click", () => {
     const title = titleInput.value;
     const author = authorInput.value;
-    const pages = pagesInput.value;
-    const haveRead = haveReadInput.value;
+    const pages = parseInt(pagesInput.value);
+    const haveRead = haveReadInput.checked;
+
     addBookToLibrary(title, author, pages, haveRead);
+
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+    haveReadInput.checked = false;
 })
 
 let book1 = new Book("The Ninth House", "Leigh Bardugo", 578, true); // dummy books for display.

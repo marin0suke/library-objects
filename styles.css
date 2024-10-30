@@ -38,6 +38,10 @@ form {
     
 }
 
+.display-books p {
+    font-size: 12px;   
+}
+
 .book-card{
     background-color: #334155;
     border-radius: 25px;

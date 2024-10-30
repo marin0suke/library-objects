@@ -19,7 +19,7 @@ addBookButton.addEventListener("click", (event) => {
     event.preventDefault(); // this stops form validation happening but also make sure only submitted when we want - so we need to hva validation here in script. 
 
     const title = titleInput.value;
-    const author = authorInput.value;
+    const author = authorInput.value || "Author Unknown";
     const pages = parseInt(pagesInput.value);
     const haveRead = haveReadInput.checked;
 
@@ -62,7 +62,7 @@ function displayLibrary(array, index) { // guessing we need func instead of it r
         bookCard.append(author);
 
         const pages = document.createElement("p");
-        pages.textContent = book.pages;
+        pages.textContent = book.pages ? `${book.pages} pages` : "Length unknown";
         bookCard.append(pages);
 
         const haveRead = document.createElement("button");

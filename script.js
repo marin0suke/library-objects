@@ -16,11 +16,12 @@ let book2 = new Book("Hell Bent", "Leigh Bardugo", 655, false);
 let book3 = new Book("A Course of Thorns and Roses", "Sarah J Maas", 390, true);
 let book4 = new Book("Snow White", "Walt Disney", 267, false);
 
-function addBookToLibrary() { // call on click of add book button.
-    // take user input and store new book objects into array. make sure validation for each required.
-    // form? alert? button to press that then brings up a form to input. form takes input and stores into obj using book function. (woo how to do this lol).
+function addBookToLibrary(title, author, pages, haveRead) { // function that will be called on click of "confirm add" after the inputs have been collected from user.
+    const newBook = new Book(title, author, pages, haveRead); // create new book by declaring new book.
+    myLibrary.push(newBook); // add to the array.
 };
 
 function displayLibrary() {
-    //display each book on the page. 
+    //display each book on the page. ?
+    //loop through myLibrary and for each - create an element that will display a card (dom manipulation).
 }

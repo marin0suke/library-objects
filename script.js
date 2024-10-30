@@ -9,6 +9,10 @@ function Book(title, author, pages, haveRead) { // Book obj with functionality f
         }
 };
 
+// Book.prototype.toggleReadStatus = function() {
+//     this.haveRead = !this.haveRead;
+// };
+
 const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
@@ -62,19 +66,15 @@ function displayLibrary(array, index) { // guessing we need func instead of it r
         const haveRead = document.createElement("button");
         haveRead.textContent = book.haveRead ? "Read" : "Unread";
         bookCard.append(haveRead);
-        console.log("haveREadbuttoncreated")
 
         haveRead.addEventListener("click", () => { // give button function on click.
-            // put toggle here
-            console.log(`New haveRead status: ${book.haveRead}`); // Log the new status
-
+            book.haveRead = !book.haveRead;
             haveRead.textContent = book.haveRead ? "Read" : "Unread";
         });
 
         const removeCardButton = document.createElement("button");
         removeCardButton.textContent = "Delete";
         bookCard.append(removeCardButton);
-        console.log("remove button created");
 
         removeCardButton.addEventListener("click", () => {
             const bookIndex = parseInt(bookCard.dataset.index, 10); // radix specifies base 10 number.

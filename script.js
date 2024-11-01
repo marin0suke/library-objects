@@ -1,12 +1,19 @@
-function Book(title, author, pages, haveRead) { // Book obj with functionality for whether have read or not.
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.haveRead = haveRead; // this might need to change ? 
-	this.info = function() {
+class Book { // changed from function (constructor on its own)
+    constructor(title, author, pages, haveRead) { // Book obj with functionality for whether have read or not.
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.haveRead = haveRead; // this might need to change ? 
+    }
+
+	info() { // changed from this.info = function() {}; now a method in a class.
 		return (`${this.title} by ${this.author}, ${this.pages} pages 
 			${haveRead === true ? "completed" : "not read yet"}`)
-        }
+    }
+
+    toggleReadStatus() {
+        this.haveRead = !this.haveRead;
+    }
 };
 
 const titleInput = document.querySelector("#title");
@@ -70,7 +77,7 @@ function displayLibrary(array, index) { // guessing we need func instead of it r
         bookCard.append(haveRead);
 
         haveRead.addEventListener("click", () => { // give button function on click.
-            book.haveRead = !book.haveRead;
+            book.toggleReadStatus(); // instead of having logic here, have method in class and just calling here.
             haveRead.textContent = book.haveRead ? "Read" : "Unread";
         });
 
